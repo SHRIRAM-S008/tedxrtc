@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude code local settings (personal/machine-specific, not shared)
+.claude/settings.local.json
+
+# raw/unprocessed source media — not referenced by the site; processed,
+# in-use copies live under public/images/
+*.HEIC
+IMG_*.MOV
+WhatsApp Image*.jpeg
+tedx photo for web/
+tedx photo new/
+illustrated+man+3d+model.obj
