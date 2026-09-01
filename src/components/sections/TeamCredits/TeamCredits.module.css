@@ -1,0 +1,263 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-black);
+  padding-top: var(--spacing-12);
+  padding-bottom: var(--spacing-12);
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: var(--spacing-16);
+    padding-bottom: var(--spacing-16);
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  padding-left: var(--spacing-6);
+  padding-right: var(--spacing-6);
+}
+
+@media (min-width: 1024px) {
+  .container {
+    gap: var(--spacing-16);
+    padding-left: var(--spacing-16);
+    padding-right: var(--spacing-16);
+  }
+}
+
+.title {
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+  color: var(--color-white);
+}
+
+.titleRed {
+  display: block;
+  text-transform: uppercase;
+  color: var(--color-red);
+}
+
+.titleWhite {
+  display: block;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin-top: var(--spacing-6);
+  max-width: 56rem;
+  color: var(--color-white);
+}
+
+/* Category section (Leadership) */
+.categoryWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+}
+
+.categoryLabel {
+  color: var(--color-gray-500);
+}
+
+/* Below 768px, leadership becomes a horizontal swipe carousel instead of
+   full-width stacked rows — 6 members stacked full-bleed ran to ~10,000px
+   of scroll on a phone. Each row becomes a snapped, fixed-width card;
+   the row/reversed layout returns at the tablet breakpoint where there's
+   room for it. */
+.portraitRows {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: var(--spacing-5);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  margin-left: calc(var(--spacing-6) * -1);
+  margin-right: calc(var(--spacing-6) * -1);
+  padding-left: var(--spacing-6);
+  padding-right: var(--spacing-6);
+  padding-bottom: var(--spacing-2);
+  scrollbar-width: none;
+}
+.portraitRows::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .portraitRows {
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: var(--spacing-16);
+    overflow-x: visible;
+    scroll-snap-type: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* Portrait row */
+.portraitRow {
+  display: flex;
+  flex: 0 0 78%;
+  max-width: 22rem;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-6);
+  scroll-snap-align: center;
+}
+
+@media (min-width: 768px) {
+  .portraitRow {
+    flex: 1 1 auto;
+    max-width: none;
+    flex-direction: row;
+    gap: var(--spacing-8);
+    scroll-snap-align: none;
+  }
+}
+
+.portraitRowReversed {
+  composes: portraitRow;
+}
+
+@media (min-width: 768px) {
+  .portraitRowReversed {
+    flex-direction: row-reverse;
+  }
+}
+
+.portraitImageWrap {
+  width: 100%;
+}
+
+/* Crop leadership portraits from the top so all photos frame the face/
+   upper body the same way — the full-body Dr. B. Nagaraj shot was
+   rendering too small/distant with the default center-center crop. */
+.portraitImageWrap img {
+  object-position: center 20%;
+}
+
+@media (min-width: 768px) {
+  .portraitImageWrap {
+    width: 20%;
+  }
+}
+
+.portraitContent {
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .portraitContent {
+    width: 70%;
+  }
+}
+
+.portraitRole {
+  color: var(--color-red);
+}
+
+.portraitName {
+  margin-top: var(--spacing-2);
+  font-family: var(--font-heading);
+  color: var(--color-white);
+}
+
+.portraitQuoteWrap {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .portraitQuoteWrap {
+    display: block;
+    margin-top: var(--spacing-6);
+    max-width: 28rem;
+  }
+}
+
+.portraitQuote {
+  color: var(--color-gray-300);
+}
+
+/* Operations grid */
+.opsWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+}
+
+.opsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--spacing-6);
+  row-gap: var(--spacing-10);
+}
+
+@media (min-width: 480px) {
+  .opsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .opsGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.opsCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.opsRole {
+  color: var(--color-red);
+}
+
+.opsName {
+  margin-top: var(--spacing-1);
+  font-family: var(--font-heading);
+  color: var(--color-white);
+}
+
+/* Impact list */
+.impactWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.impactList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.impactItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  border-left: 2px solid var(--color-red);
+  background-color: var(--color-gray-950);
+  padding: var(--spacing-4) var(--spacing-6);
+}
+
+.impactRole {
+  color: var(--color-white);
+}
+
+.impactName {
+  color: var(--color-gray-300);
+}

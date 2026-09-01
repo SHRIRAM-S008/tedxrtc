@@ -1,0 +1,163 @@
+.section {
+  position: relative;
+  background-color: var(--color-black);
+  overflow: hidden;
+  padding-top: var(--spacing-16);
+  padding-bottom: var(--spacing-16);
+}
+@media (min-width: 768px) {
+  .section {
+    padding-top: var(--spacing-24);
+    padding-bottom: var(--spacing-24);
+  }
+}
+
+.line {
+  position: absolute;
+  left: var(--spacing-6);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-gray-700);
+}
+@media (min-width: 1024px) {
+  .line {
+    left: var(--spacing-16);
+  }
+}
+
+.dot {
+  position: absolute;
+  left: var(--spacing-6);
+  bottom: var(--spacing-16);
+  z-index: 1;
+  height: 8px;
+  width: 8px;
+  transform: translateX(-3px);
+  border-radius: 9999px;
+  background-color: var(--color-red);
+}
+@media (min-width: 1024px) {
+  .dot {
+    left: var(--spacing-16);
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-10);
+  padding-right: var(--spacing-6);
+}
+@media (min-width: 480px) {
+  .container {
+    max-width: var(--breakpoint-sm);
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--breakpoint-md);
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: var(--breakpoint-lg);
+    padding-left: var(--spacing-24);
+    padding-right: var(--spacing-16);
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: var(--breakpoint-xl);
+  }
+}
+@media (min-width: 1536px) {
+  .container {
+    max-width: var(--breakpoint-2xl);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-16);
+}
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-20);
+    align-items: start;
+  }
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.eyebrowDash {
+  height: 1px;
+  width: 24px;
+  background-color: var(--color-red);
+}
+
+.eyebrow {
+  color: var(--color-red);
+}
+
+.headline {
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.subhead {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-red);
+  font-size: clamp(1.5rem, 1.2vw + 1.2rem, 2.25rem);
+  line-height: 1.15;
+}
+
+.paragraph {
+  color: var(--color-gray-100);
+  max-width: 40ch;
+}
+
+.divider {
+  margin-top: var(--spacing-4);
+  border-top: 1px solid var(--color-gray-700);
+}
+
+.enquiriesLabel {
+  margin-top: var(--spacing-2);
+  color: var(--color-gray-500);
+}
+
+.enquiriesText {
+  margin-top: var(--spacing-2);
+  color: var(--color-gray-100);
+  max-width: 40ch;
+}
+
+.enquiriesLink {
+  color: var(--color-red);
+  text-decoration: underline;
+  transition: color var(--duration-base);
+}
+.enquiriesLink:hover {
+  color: var(--color-red-dark);
+}
+
+.formColumn {
+  width: 100%;
+}

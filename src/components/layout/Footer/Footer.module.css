@@ -1,0 +1,148 @@
+.footer {
+  background-color: var(--color-gray-950);
+  border-top: 1px solid var(--color-gray-700);
+  padding-block: var(--spacing-16);
+  margin-top: var(--spacing-32);
+}
+
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-6);
+  padding-right: var(--spacing-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-12) var(--spacing-8);
+}
+
+@media (min-width: 768px) {
+  .container {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--spacing-16);
+    padding-right: var(--spacing-16);
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+@media (min-width: 768px) {
+  .brand {
+    grid-column: span 3 / span 3;
+  }
+}
+
+.brandLink {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.logo {
+  height: 5rem;
+}
+
+.disclaimer {
+  color: var(--color-gray-300);
+  max-width: 20rem;
+}
+
+.linksGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-10) var(--spacing-8);
+}
+
+@media (min-width: 768px) {
+  .linksGrid {
+    grid-column: span 9 / span 9;
+  }
+}
+
+@media (min-width: 480px) {
+  .linksGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.columnTitle {
+  color: var(--color-gray-500);
+  margin-bottom: var(--spacing-2);
+}
+
+.link {
+  transition: color var(--duration-base);
+}
+.link:hover {
+  color: var(--color-red);
+}
+
+.venueText {
+  color: var(--color-gray-300);
+}
+
+.mapLink {
+  color: var(--color-white);
+  transition: color var(--duration-base);
+  width: fit-content;
+}
+.mapLink:hover {
+  color: var(--color-red);
+}
+
+.emailLink {
+  transition: color var(--duration-base);
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+.emailLink:hover {
+  color: var(--color-red);
+}
+
+.bottomBar {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-6);
+  padding-right: var(--spacing-6);
+  margin-top: var(--spacing-16);
+  padding-top: var(--spacing-8);
+  border-top: 1px solid var(--color-gray-700);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+@media (min-width: 1024px) {
+  .bottomBar {
+    padding-left: var(--spacing-16);
+    padding-right: var(--spacing-16);
+  }
+}
+
+@media (min-width: 480px) {
+  .bottomBar {
+    flex-direction: row;
+  }
+}
+
+.bottomText {
+  color: var(--color-gray-500);
+}

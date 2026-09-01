@@ -1,0 +1,352 @@
+.section {
+  position: relative;
+  width: 100%;
+  /* min-height, not height — see RathinamHero.module.css's .section comment:
+     a fixed height + overflow:hidden + vertically-centered content clips
+     the top of the stack when content is taller than the viewport, which
+     happens on narrow mobile screens with this section's logo+headline
+     +subtitle+CTA stack. */
+  min-height: 600px;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-black);
+  overflow: hidden;
+  /* Reserve room below the centered content so it never collides with the
+     absolutely-positioned .metaLine / .scrollIndicator sitting at the
+     section's bottom edge (they're outside the flex flow, so centering
+     alone doesn't account for them). */
+  padding-bottom: var(--spacing-10);
+}
+@media (min-width: 1024px) {
+  .section {
+    /* Extra clearance once .scrollIndicator also becomes visible (lg+). */
+    padding-bottom: var(--spacing-20);
+  }
+}
+
+.bgWrap {
+  position: absolute;
+  inset: 0;
+}
+
+.bgParallax {
+  position: absolute;
+  inset: 0;
+  top: -20%;
+  bottom: -20%;
+  background-color: var(--color-gray-950);
+}
+
+.bgPush {
+  position: absolute;
+  inset: 0;
+}
+
+.bgDrift {
+  position: absolute;
+  inset: 0;
+}
+
+.bgImage {
+  object-fit: cover;
+}
+
+.scrimFlat {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background-color: color-mix(in srgb, var(--color-black) 45%, transparent);
+}
+
+.scrimGradient {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background-image: linear-gradient(
+    to top,
+    var(--color-black),
+    color-mix(in srgb, var(--color-black) 70%, transparent),
+    transparent
+  );
+}
+
+.glowLayer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+}
+
+.particlesLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+}
+
+.container {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-6);
+  padding-right: var(--spacing-6);
+}
+@media (min-width: 360px) {
+  .container {
+    max-width: var(--breakpoint-xs);
+  }
+}
+@media (min-width: 480px) {
+  .container {
+    max-width: var(--breakpoint-sm);
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--breakpoint-md);
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: var(--breakpoint-lg);
+    padding-left: var(--spacing-16);
+    padding-right: var(--spacing-16);
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: var(--breakpoint-xl);
+  }
+}
+@media (min-width: 1536px) {
+  .container {
+    max-width: var(--breakpoint-2xl);
+  }
+}
+@media (min-width: 1920px) {
+  .container {
+    max-width: var(--breakpoint-cinema);
+  }
+}
+
+.dot {
+  position: absolute;
+  left: var(--spacing-6);
+  top: 0;
+  z-index: 20;
+  height: 6px;
+  width: 6px;
+  transform: translateX(-2px);
+  border-radius: 9999px;
+  background-color: var(--color-red);
+}
+@media (min-width: 1024px) {
+  .dot {
+    left: var(--spacing-16);
+  }
+}
+
+.line {
+  position: absolute;
+  left: var(--spacing-6);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  z-index: 20;
+  background-color: var(--color-red);
+  transform-origin: top;
+}
+@media (min-width: 1024px) {
+  .line {
+    left: var(--spacing-16);
+  }
+}
+
+.contentInner {
+  padding-left: var(--spacing-8);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-8);
+  margin-top: var(--spacing-10);
+}
+@media (min-width: 768px) {
+  .contentInner {
+    margin-top: var(--spacing-16);
+  }
+}
+@media (min-width: 1024px) {
+  .contentInner {
+    padding-left: var(--spacing-24);
+  }
+}
+
+.logo {
+  height: var(--spacing-16);
+  width: auto;
+}
+@media (min-width: 768px) {
+  .logo {
+    height: var(--spacing-20);
+  }
+}
+
+.eyebrow {
+  color: var(--color-gray-300);
+}
+
+.draftPhrase {
+  color: var(--color-red);
+  position: relative;
+  display: inline-block;
+}
+
+.draftPhraseStrike {
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  right: -8px;
+  height: 1px;
+  background-color: var(--color-red);
+  transform-origin: left;
+}
+
+.headline {
+  color: var(--color-white);
+  max-width: 64rem;
+  margin-left: -0.25rem;
+  position: relative;
+  z-index: 10;
+}
+@media (min-width: 768px) {
+  .headline {
+    margin-left: -0.5rem;
+  }
+}
+
+.headlineGhost {
+  position: absolute;
+  inset: 0;
+  color: var(--color-red);
+  pointer-events: none;
+  user-select: none;
+}
+
+.headlineChromatic {
+  position: absolute;
+  inset: 0;
+  color: var(--color-red);
+  pointer-events: none;
+  user-select: none;
+}
+
+.subtitle {
+  color: var(--color-gray-100);
+  max-width: 36rem;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-4);
+}
+
+.metaLine {
+  position: absolute;
+  bottom: var(--spacing-8);
+  left: var(--spacing-6);
+  z-index: 20;
+  display: none;
+}
+@media (min-width: 480px) {
+  .metaLine {
+    display: block;
+  }
+}
+@media (min-width: 768px) {
+  .metaLine {
+    left: 120px;
+  }
+}
+
+.metaText {
+  color: var(--color-gray-300);
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: var(--spacing-8);
+  left: 50%;
+  z-index: 20;
+  display: none;
+  transform: translateX(-50%);
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+@media (min-width: 1024px) {
+  .scrollIndicator {
+    display: flex;
+  }
+}
+
+.scrollLabel {
+  color: var(--color-gray-300);
+}
+
+.scrollTrack {
+  position: relative;
+  height: var(--spacing-10);
+  width: 1px;
+  overflow: hidden;
+  background-color: var(--color-gray-700);
+}
+
+.scrollProgress {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 50%;
+  background-color: var(--color-red);
+}
+
+/* ============================================================================
+   Hero headline "glitch out" — a short burst every ~7s, clean the rest of the
+   time. Deliberately brief and infrequent: a headline that glitches constantly
+   reads as a broken render, not a design choice. Entirely inside a
+   no-preference media query, so under prefers-reduced-motion this doesn't
+   exist.
+   ============================================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .heroGlitch {
+    animation: hero-glitch-burst 7s steps(1, end) infinite;
+  }
+
+  @keyframes hero-glitch-burst {
+    0%, 90% { text-shadow: none; }
+    91% { text-shadow: 3px 0 var(--color-red), -2px 0 rgba(250, 250, 250, 0.35); }
+    92% { text-shadow: -4px 0 var(--color-red), 2px 0 rgba(250, 250, 250, 0.28); }
+    93% { text-shadow: 2px 0 var(--color-red); }
+    94% { text-shadow: -3px 0 var(--color-red), 1px 0 rgba(250, 250, 250, 0.3); }
+    95%, 100% { text-shadow: none; }
+  }
+
+  /* Offset slice-tear layer that flickers through the headline during the burst. */
+  .heroGlitchGhost {
+    opacity: 0;
+    animation: hero-glitch-slice 7s steps(1, end) infinite;
+  }
+
+  @keyframes hero-glitch-slice {
+    0%, 90% { opacity: 0; clip-path: inset(0 0 100% 0); transform: translate3d(0, 0, 0); }
+    91% { opacity: 0.85; clip-path: inset(10% 0 64% 0); transform: translate3d(-9px, 0, 0); }
+    92% { opacity: 0.7; clip-path: inset(58% 0 22% 0); transform: translate3d(10px, 0, 0); }
+    93% { opacity: 0.8; clip-path: inset(34% 0 48% 0); transform: translate3d(-6px, 0, 0); }
+    94% { opacity: 0.6; clip-path: inset(72% 0 6% 0); transform: translate3d(7px, 0, 0); }
+    95%, 100% { opacity: 0; clip-path: inset(0 0 100% 0); transform: translate3d(0, 0, 0); }
+  }
+}

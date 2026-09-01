@@ -1,0 +1,199 @@
+.section {
+  position: relative;
+  /* min-height, not height: on short/narrow mobile viewports the stacked
+     logo + headline + countdown can exceed one screen's worth of height:
+     with a fixed height + overflow:hidden + flex-end content, the excess
+     got clipped off the TOP and was invisible until scrolled past. A
+     min-height lets the section grow to fit its content instead.
+     display:flex here (rather than leaving .contentLayer's height:100% to
+     resolve by itself) sidesteps the CSS rule that percentage heights on a
+     child are ignored when the parent's own height isn't "specified
+     explicitly" — true of a min-height-only box — by sizing the child via
+     flex instead of a percentage. */
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
+  min-height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-black);
+}
+
+.bgLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.bgImage {
+  height: 100%;
+  width: 100%;
+  border-radius: 0;
+  border: 0;
+}
+
+.vignette {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: none;
+}
+@media (min-width: 1024px) {
+  .glow {
+    display: block;
+  }
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background-image: linear-gradient(
+    to top,
+    var(--color-black),
+    color-mix(in srgb, var(--color-black) 70%, transparent),
+    color-mix(in srgb, var(--color-black) 20%, transparent)
+  );
+}
+
+.contentLayer {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex: 1 0 auto;
+  width: 100%;
+  flex-direction: column;
+  /* Centered on mobile so the headline/countdown land inside the first
+     screen instead of being pushed below it by a bottom anchor; the
+     bottom-anchored cinematic composition returns at the tablet/desktop
+     breakpoint below, where there's enough height to spare. */
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .contentLayer {
+    justify-content: flex-end;
+  }
+}
+
+.contentStack {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding-left: var(--spacing-6);
+  padding-right: var(--spacing-6);
+  padding-top: var(--spacing-10);
+  padding-bottom: var(--spacing-10);
+}
+@media (min-width: 768px) {
+  .contentStack {
+    gap: var(--spacing-12);
+    padding-top: 0;
+    padding-bottom: var(--spacing-24);
+  }
+}
+@media (min-width: 1024px) {
+  .contentStack {
+    padding-left: var(--spacing-16);
+    padding-right: var(--spacing-16);
+  }
+}
+
+.logoWrap {
+  position: relative;
+  margin-bottom: var(--spacing-2);
+  display: flex;
+  width: 180px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+@media (min-width: 400px) {
+  .logoWrap {
+    width: 220px;
+  }
+}
+@media (min-width: 480px) {
+  .logoWrap {
+    width: 260px;
+  }
+}
+@media (min-width: 768px) {
+  .logoWrap {
+    margin-bottom: var(--spacing-4);
+  }
+}
+@media (min-width: 1024px) {
+  .logoWrap {
+    width: 320px;
+  }
+}
+
+.sweep {
+  pointer-events: none;
+  position: absolute;
+  top: calc(var(--spacing-10) * -1);
+  bottom: calc(var(--spacing-10) * -1);
+  left: 0;
+  width: 33.3333%;
+}
+
+.logoScale {
+  position: relative;
+  width: 100%;
+}
+
+.logoSvg {
+  height: auto;
+  width: 100%;
+}
+
+.headlineWrap {
+  max-width: 56rem;
+}
+
+.subhead {
+  max-width: 28rem;
+  color: var(--color-gray-100);
+}
+
+.scrollCue {
+  position: absolute;
+  bottom: var(--spacing-8);
+  left: 50%;
+  z-index: 20;
+  display: none;
+  transform: translateX(-50%);
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+@media (min-width: 1024px) {
+  .scrollCue {
+    display: flex;
+  }
+}
+
+.scrollTrack {
+  position: relative;
+  height: 2.5rem;
+  width: 1px;
+  overflow: hidden;
+  background-color: var(--color-gray-700);
+}
+
+.scrollThumb {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 50%;
+  background-color: var(--color-gray-300);
+}

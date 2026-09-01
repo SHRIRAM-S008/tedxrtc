@@ -1,8 +1,9 @@
 "use client";
 import dynamic from "next/dynamic";
-import { Suspense, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import type { SpeakerSlot } from "@/lib/data/speaker-slots";
+import { useInView } from "@/lib/hooks/useInView";
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
 
@@ -22,6 +23,10 @@ interface SpeakerCardProps {
    *  context to check capability; calling it once per card (x9) would
    *  redundantly create 9 throwaway contexts instead of one. */
   canRender3D: boolean | null;
+  /** True for the 3 cards closest to viewport center (SpeakerCardGrid's
+   *  focus system). Only focused cards mount the 3D canvas — max 3 WebGL
+   *  contexts at a time instead of 18. */
+  isFocused?: boolean;
 }
 
 /**
@@ -32,10 +37,16 @@ interface SpeakerCardProps {
  * links — the mystery is the figure itself, silhouetted and rim-lit, not
  * copy.
  */
-export function SpeakerCard({ slot, index, onReveal, canRender3D }: SpeakerCardProps) {
+export function SpeakerCard({ slot, index, onReveal, canRender3D, isFocused = false }: SpeakerCardProps) {
   const shouldReduceMotion = useReducedMotion();
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  // The marquee duplicates all 9 slots to 18 mounted cards for its seamless
+  // loop; without this, every one of them would run its own <Canvas> render
+  // loop simultaneously (up to and past the browser's ~16 WebGL-context cap)
+  // regardless of whether it's ever been scrolled into view.
+  const isInView = useInView(cardRef, "300px");
 
   function handleClick() {
     setIsClicked(true);
@@ -44,6 +55,9 @@ export function SpeakerCard({ slot, index, onReveal, canRender3D }: SpeakerCardP
   }
 
   const label = `Speaker ${slot.number}, identity not yet revealed`;
+
+  // 3D only for focused + in-view + capable devices — max 3 WebGL contexts.
+  const show3D = canRender3D && isInView && isFocused;
 
   return (
     <motion.div
@@ -60,6 +74,7 @@ export function SpeakerCard({ slot, index, onReveal, canRender3D }: SpeakerCardP
           same element, the same conflict already fixed once in this file's
           history — see git log). */}
       <motion.div
+        ref={cardRef}
         animate={shouldReduceMotion ? undefined : { y: [0, -5, 0] }}
         transition={
           shouldReduceMotion
@@ -105,14 +120,14 @@ export function SpeakerCard({ slot, index, onReveal, canRender3D }: SpeakerCardP
           <p className="text-eyebrow text-[var(--color-gray-300)]">Speaker #{slot.number}</p>
 
           <div className="relative w-full flex-1">
-            {canRender3D ? (
+            {show3D ? (
               <Suspense fallback={null}>
                 <SpeakerCardFigure isHovered={isHovered && !shouldReduceMotion} />
               </Suspense>
             ) : (
-              // CSS silhouette fallback — mobile, low-end, no WebGL, reduced
-              // motion (useCanRender3D). Already dark/solid, so "silhouetted"
-              // holds true here too.
+              // CSS silhouette fallback — non-focused cards, mobile, low-end,
+              // no WebGL, reduced motion (useCanRender3D). Already dark/solid,
+              // so "silhouetted" holds true here too.
               <div className="flex h-full items-center justify-center">
                 <svg viewBox="0 0 64 80" className="h-16 w-16" aria-hidden="true">
                   <path

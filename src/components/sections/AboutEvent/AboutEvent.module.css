@@ -1,0 +1,264 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-black);
+  padding-top: var(--spacing-8);
+  padding-bottom: var(--spacing-8);
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: var(--spacing-10);
+    padding-bottom: var(--spacing-10);
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-6);
+  padding-right: var(--spacing-6);
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--spacing-16);
+    padding-right: var(--spacing-16);
+  }
+}
+
+.eyebrowLine {
+  display: block;
+  text-transform: uppercase;
+  color: var(--color-red);
+}
+
+.titleLine {
+  display: block;
+  text-transform: uppercase;
+}
+
+.title {
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+
+.subtitle {
+  margin-top: var(--spacing-4);
+  max-width: 56rem;
+  color: var(--color-white);
+}
+
+.grid {
+  margin-top: var(--spacing-8);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-10);
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    margin-top: var(--spacing-12);
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-12);
+  }
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.narrative {
+  display: flex;
+  max-width: 65ch;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.bodyText {
+  color: var(--color-gray-100);
+}
+
+/* Stat cards — `.statCard` + child hover selectors replace Tailwind's
+   `group`/`group-hover:` (not available in plain CSS Modules). */
+.statGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-5);
+}
+
+@media (min-width: 480px) {
+  .statGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .statGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1280px) {
+  .statGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.statCard {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  border: 1px solid var(--color-gray-700);
+  background-color: var(--color-gray-950);
+  padding: var(--spacing-6);
+  transition: border-color 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.statCard:hover,
+.statCard:focus-visible {
+  border-color: var(--color-red);
+}
+
+.statCardEyebrow {
+  color: var(--color-gray-500);
+  transition: color var(--duration-base);
+}
+
+.statCard:hover .statCardEyebrow,
+.statCard:focus-visible .statCardEyebrow {
+  color: var(--color-white);
+}
+
+.statCardValue {
+  font-family: var(--font-heading);
+  color: var(--color-white);
+  transition: color var(--duration-base);
+}
+
+.statCard:hover .statCardValue,
+.statCard:focus-visible .statCardValue {
+  color: var(--color-red);
+}
+
+.statCardNote {
+  color: var(--color-gray-300);
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+/* Vision / Mission cards — inset left-line hover, replaces `.red-line-reveal`. */
+.lineCard {
+  background-color: var(--color-gray-950);
+  padding: var(--spacing-6);
+  transition: box-shadow 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  box-shadow: inset 2px 0 0 0 var(--color-red);
+}
+
+.lineCard:hover,
+.lineCard:focus-visible {
+  box-shadow: inset 4px 0 0 0 var(--color-red);
+}
+
+@media (min-width: 1024px) {
+  .lineCard {
+    padding: var(--spacing-8);
+  }
+}
+
+.lineCardLabel {
+  color: var(--color-white);
+}
+
+.lineCardBody {
+  margin-top: var(--spacing-4);
+  color: var(--color-gray-100);
+}
+
+/* Dark Google Maps embed, replaces `.map-dark`. */
+.mapFrame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-gray-700);
+  background-color: var(--color-gray-950);
+}
+
+.mapFrame iframe {
+  filter: invert(1) hue-rotate(180deg) brightness(0.75) contrast(1.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mapFrame iframe {
+    filter: none;
+  }
+}
+
+.mapIframe {
+  height: 16rem;
+  width: 100%;
+  border: 0;
+}
+
+@media (min-width: 480px) {
+  .mapIframe {
+    height: 20rem;
+  }
+}
+
+.mapMarker {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -12px;
+  margin-top: -24px;
+}
+
+.addressBlock {
+  border-top: 1px solid var(--color-gray-700);
+  padding: var(--spacing-6);
+}
+
+.addressText {
+  color: var(--color-gray-300);
+}
+
+.mapLink {
+  margin-top: var(--spacing-3);
+  display: inline-block;
+  width: fit-content;
+  color: var(--color-red);
+  transition: color var(--duration-base);
+}
+
+.mapLink:hover {
+  color: var(--color-red-dark);
+}
+
+.ctaRow {
+  margin-top: var(--spacing-12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+@media (min-width: 1024px) {
+  .ctaRow {
+    margin-top: var(--spacing-16);
+  }
+}
+
+.ctaText {
+  text-align: center;
+  color: var(--color-gray-100);
+}

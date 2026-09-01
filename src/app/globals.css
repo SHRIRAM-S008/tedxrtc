@@ -204,44 +204,6 @@
   outline: none; /* Provide outline ONLY on :focus-visible */
 }
 
-/* ============================================================================
-   Hero headline "glitch out" — a short burst every ~7s, clean the rest of the
-   time. Deliberately brief and infrequent: a headline that glitches constantly
-   reads as a broken render, not a design choice (ANIMATIONS.md §5). Entirely
-   inside a no-preference media query, so under prefers-reduced-motion this
-   doesn't exist (ANIMATIONS.md §6 / ACCESSIBILITY.md §5).
-   ============================================================================ */
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero-glitch {
-    animation: hero-glitch-burst 7s steps(1, end) infinite;
-  }
-
-  @keyframes hero-glitch-burst {
-    0%, 90% { text-shadow: none; }
-    91% { text-shadow: 3px 0 var(--color-red), -2px 0 rgba(250, 250, 250, 0.35); }
-    92% { text-shadow: -4px 0 var(--color-red), 2px 0 rgba(250, 250, 250, 0.28); }
-    93% { text-shadow: 2px 0 var(--color-red); }
-    94% { text-shadow: -3px 0 var(--color-red), 1px 0 rgba(250, 250, 250, 0.3); }
-    95%, 100% { text-shadow: none; }
-  }
-
-  /* Offset slice-tear layer that flickers through the headline during the burst. */
-  .hero-glitch-ghost {
-    opacity: 0;
-    animation: hero-glitch-slice 7s steps(1, end) infinite;
-  }
-
-  @keyframes hero-glitch-slice {
-    0%, 90% { opacity: 0; clip-path: inset(0 0 100% 0); transform: translate3d(0, 0, 0); }
-    91% { opacity: 0.85; clip-path: inset(10% 0 64% 0); transform: translate3d(-9px, 0, 0); }
-    92% { opacity: 0.7; clip-path: inset(58% 0 22% 0); transform: translate3d(10px, 0, 0); }
-    93% { opacity: 0.8; clip-path: inset(34% 0 48% 0); transform: translate3d(-6px, 0, 0); }
-    94% { opacity: 0.6; clip-path: inset(72% 0 6% 0); transform: translate3d(7px, 0, 0); }
-    95%, 100% { opacity: 0; clip-path: inset(0 0 100% 0); transform: translate3d(0, 0, 0); }
-  }
-}
-
 /* One-shot error flash for form fields — border holds red, background pulses once
    (ANIMATIONS.md §5: flash-then-hold, never a shake). */
 @keyframes field-flash {
