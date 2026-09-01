@@ -56,8 +56,7 @@ const line = {
  * Chapter 1 — establishes the campus, now introduced by the official logo as
  * an editorial brand mark (a later, explicit decision that supersedes this
  * section's original TEDx-free design — see BRANDING.md §6's note on
- * `RathinamHero`). `RathinamExperience` (chapter 2) stays TEDx-free/red-free
- * on its own terms; this section no longer is.
+ * `RathinamHero`).
  */
 export function RathinamHero() {
   const shouldReduceMotion = useReducedMotion();

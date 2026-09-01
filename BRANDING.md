@@ -44,7 +44,7 @@ The organizing team explicitly authorized, for this site only, direct cinematic 
 
 **What the override does NOT permit, even in these contexts:** skewing, stretching, or otherwise distorting the mark's proportions; recoloring it; cropping it in a way that separates "TED" from "x" or drops the event name inconsistently; or using it as a decorative shape (background blob, bullet, loading spinner) anywhere else on the site. If a new placement or effect beyond the contexts above is considered later, extend this section first (`WORKFLOW.md §3`) rather than assuming the override applies site-wide.
 
-**Note on `RathinamHero`:** this section was originally built deliberately TEDx-free, to keep the "Rathinam first, TEDx as the next chapter" narrative intact (see the section's own code comments/history). Placing the logo here was a later, explicit decision by the organizing team that supersedes that original choice — `RathinamExperience` (chapter 2) remains TEDx-free/red-free on its own terms, unaffected by this change.
+**Note on `RathinamHero`:** this section was originally built deliberately TEDx-free, to keep the "Rathinam first, TEDx as the next chapter" narrative intact (see the section's own code comments/history). Placing the logo here was a later, explicit decision by the organizing team that supersedes that original choice.
 
 ## Do / Don't
 

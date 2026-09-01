@@ -118,7 +118,7 @@ const chapters: Chapter[] = [
 ];
 
 /**
- * Chapter 5 — Sticky Timeline. A fixed pane pins while the visitor scrolls
+ * Chapter 4 — Sticky Timeline. A fixed pane pins while the visitor scrolls
  * through 5 informational chapters (Venue/Schedule/Date/Theme/Partners),
  * crossfading between them (the section's one scoped GSAP use, CLAUDE.md).
  *

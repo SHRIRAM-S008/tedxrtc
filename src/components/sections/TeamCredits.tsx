@@ -118,7 +118,7 @@ function ImpactMarquee({ members }: { members: TeamMember[] }) {
 }
 
 /**
- * Chapter 4 — the people behind the event, presented as production credits
+ * Chapter 3 — the people behind the event, presented as production credits
  * rather than a headshot grid. Three distinct visual identities by category,
  * scaled to the real roster's size (TEDxRTC_Committee_Details.pdf): Split
  * Layout large portrait rows for the small Leadership group (6), a compact

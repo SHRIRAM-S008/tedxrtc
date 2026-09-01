@@ -1,7 +1,7 @@
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { FloatingGallery } from "./FloatingGallery";
 
-/** Chapter 3's continuation — same content/structure as the former `About`,
+/** Chapter 2's continuation — same content/structure as the former `About`,
  * now reached after TEDxArrival rather than opening the page. */
 export function TEDxIntro() {
   return (

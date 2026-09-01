@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/layout/Logo";
 
 /**
- * Chapter 6 — Minimal Ending. Mostly empty space, typography dominates, one
+ * Chapter 5 — Minimal Ending. Mostly empty space, typography dominates, one
  * CTA. The closing logo gets a slow breathing opacity loop and a soft glow
  * behind it — the "final frame of a documentary" treatment, authorized as a
  * scoped, documented exception to the general "never animate the mark" rule

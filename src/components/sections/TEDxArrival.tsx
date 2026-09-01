@@ -52,14 +52,12 @@ const T = {
 };
 
 /**
- * Chapter 3's arrival — this used to be the page's very first paint (`Hero`);
- * it's now a mid-page chapter reached by scrolling past the Rathinam
- * chapters, so it no longer carries the page's LCP (RathinamHero does), and
- * the whole revision-mark sequence is gated on `isInView` rather than mount.
- * Background is the official TEDx collage artwork (a still image, not the
- * former looping b-roll video) — this is the first place TEDx branding
- * appears on the page, by design (see RathinamHero/RathinamExperience's
- * red-free comments). The sequence itself (timings, beats) is otherwise
+ * Chapter 2's arrival — this used to be the page's very first paint (`Hero`);
+ * it's now a mid-page chapter reached by scrolling past `RathinamHero`, so it
+ * no longer carries the page's LCP (`RathinamHero` does), and the whole
+ * revision-mark sequence is gated on `isInView` rather than mount. Background
+ * is the official TEDx collage artwork (a still image, not the former
+ * looping b-roll video). The sequence itself (timings, beats) is otherwise
  * unchanged — still the site's one signature element (UNFINISHED_THEME.md).
  */
 export function TEDxArrival() {
