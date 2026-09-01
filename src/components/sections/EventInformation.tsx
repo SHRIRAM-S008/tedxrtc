@@ -194,7 +194,7 @@ export function EventInformation() {
         ref={paneRef}
         className={cn(
           "relative w-full",
-          shouldReduceMotion ? "flex flex-col gap-20 py-24 lg:py-32" : "h-screen overflow-hidden",
+          shouldReduceMotion ? "flex flex-col gap-16 py-16 lg:py-24" : "h-screen overflow-hidden",
         )}
       >
         {chapters.map((chapter, i) => (
@@ -220,7 +220,7 @@ export function EventInformation() {
         ))}
       </div>
 
-      <div className="container relative mx-auto px-6 py-32 lg:px-16">
+      <div className="container relative mx-auto px-6 py-20 lg:px-16 lg:py-24">
         <div className="pl-8 lg:pl-24 grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-12">
           <div className="flex flex-col gap-8 lg:col-span-5">
             <RevealOnScroll>

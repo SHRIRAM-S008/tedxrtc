@@ -82,7 +82,7 @@ Use `clamp()` so desktop sizes are the ceiling and mobile scales down proportion
 | `space-6` | 24px | | `space-32` | 200px |
 | `space-8` | 32px | | `space-40` | 256px |
 
-**Section rhythm:** vertical padding between major sections is `space-32` to `space-40` on desktop (this is a cinematic site — let sections breathe like scenes, not like a dense SaaS landing page), `space-16` on mobile. Component-internal spacing (card padding, button padding) stays in the `space-3`–`space-8` range.
+**Section rhythm:** vertical padding between major sections is `space-20` to `space-24` on desktop (cinematic breathing room without excess air — scenes feel adjacent, not separated by a void), `space-12` to `space-16` on mobile. Component-internal spacing (card padding, button padding) stays in the `space-3`–`space-8` range.
 
 ## 5. Grid & layout
 

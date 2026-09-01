@@ -214,7 +214,6 @@ export function RathinamHero() {
         animate="visible"
         className="absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-3 lg:flex"
       >
-        <span className="text-eyebrow text-[var(--color-gray-300)]">Scroll</span>
         <div className="relative h-10 w-px overflow-hidden bg-[var(--color-gray-700)]">
           {shouldReduceMotion ? (
             <div className="absolute inset-x-0 top-0 h-1/2 bg-[var(--color-gray-300)]" />

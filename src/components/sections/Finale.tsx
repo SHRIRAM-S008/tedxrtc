@@ -17,7 +17,7 @@ export function Finale() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="relative flex min-h-[80vh] flex-col items-center justify-center gap-16 overflow-hidden bg-[var(--color-black)] px-6 py-32 text-center lg:px-16">
+    <section className="relative flex min-h-[80vh] flex-col items-center justify-center gap-16 overflow-hidden bg-[var(--color-black)] px-6 py-20 text-center lg:px-16 lg:py-24">
       <RevealOnScroll>
         <h2 className="text-display-l font-heading text-white">
           The next great idea

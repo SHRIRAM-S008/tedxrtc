@@ -5,7 +5,7 @@ import { FloatingGallery } from "./FloatingGallery";
  * now reached after TEDxArrival rather than opening the page. */
 export function TEDxIntro() {
   return (
-    <section id="tedx" className="relative bg-[var(--color-black)] overflow-hidden py-20 lg:py-40">
+    <section id="tedx" className="relative bg-[var(--color-black)] overflow-hidden py-12 lg:py-24">
       <div className="container mx-auto px-6 lg:px-16">
         <FloatingGallery>
           <div className="flex flex-col items-center gap-12 text-center">

@@ -26,7 +26,7 @@ export function Speakers() {
   return (
     <section
       id="speakers"
-      className="relative overflow-hidden border-t border-[var(--color-gray-700)] bg-[var(--color-black)] py-32 md:py-44"
+      className="relative overflow-hidden border-t border-[var(--color-gray-700)] bg-[var(--color-black)] py-20 md:py-28"
     >
       {/* Ambient backdrop kept for atmosphere regardless of 3D capability —
           previously the non-3D fallback only; there's no 3D hero layer to

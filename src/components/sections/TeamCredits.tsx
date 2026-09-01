@@ -133,8 +133,8 @@ export function TeamCredits() {
   const impact = team.filter((m) => m.category === "Impact Team");
 
   return (
-    <section id="team" className="relative overflow-hidden bg-[var(--color-black)] py-24 lg:py-40">
-      <div className="container mx-auto flex flex-col gap-24 px-6 lg:gap-32 lg:px-16">
+    <section id="team" className="relative overflow-hidden bg-[var(--color-black)] py-16 lg:py-24">
+      <div className="container mx-auto flex flex-col gap-16 px-6 lg:gap-24 lg:px-16">
         <div className="max-w-2xl">
           <p className="mb-4 text-eyebrow text-[var(--color-gray-500)]">Meet Our Team</p>
           <SplitTitle
