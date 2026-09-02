@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { InViewGlitchText } from "@/components/motion/GlitchText";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/layout/Logo";
@@ -22,11 +23,11 @@ export function Finale() {
     <section className={styles.section}>
       <RevealOnScroll>
         <h2 className={cn("text-display-l", styles.heading)}>
-          The next great idea
+          <InViewGlitchText text="The next great idea" duration={750} />
           <br />
-          might begin
+          <InViewGlitchText text="might begin" delay={100} duration={600} />
           <br />
-          at Rathinam.
+          <InViewGlitchText text="at Rathinam." delay={180} duration={600} />
         </h2>
       </RevealOnScroll>
 

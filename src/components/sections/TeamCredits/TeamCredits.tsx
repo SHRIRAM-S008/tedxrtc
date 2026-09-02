@@ -1,3 +1,4 @@
+import { InViewGlitchText } from "@/components/motion/GlitchText";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { team } from "@/lib/data/team";
@@ -136,8 +137,8 @@ export function TeamCredits() {
             in the same editorial register as the hero's "THE UNFINISHED". */}
         <RevealOnScroll>
           <h2 className={cn("text-display-l", styles.title)}>
-            <span className={styles.titleRed}>Meet Our</span>
-            <span className={styles.titleWhite}>Team</span>
+            <InViewGlitchText text="Meet Our" className={styles.titleRed} duration={700} />
+            <InViewGlitchText text="Team" className={styles.titleWhite} delay={100} duration={500} />
           </h2>
         </RevealOnScroll>
 

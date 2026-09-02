@@ -1,3 +1,4 @@
+import { InViewGlitchText } from "@/components/motion/GlitchText";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { RegisterForm } from "@/components/sections/RegisterForm";
 import { EVENT } from "@/lib/event";
@@ -29,7 +30,9 @@ export function Tickets() {
             </RevealOnScroll>
 
             <RevealOnScroll delay={0.08}>
-              <h2 className={cn("text-display-l", styles.headline)}>Claim Your Seat</h2>
+              <h2 className={cn("text-display-l", styles.headline)}>
+                <InViewGlitchText text="Claim Your Seat" />
+              </h2>
             </RevealOnScroll>
 
             <RevealOnScroll delay={0.14}>

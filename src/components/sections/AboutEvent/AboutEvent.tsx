@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { InViewGlitchText } from "@/components/motion/GlitchText";
 import { HighlightPhrase } from "@/components/motion/HighlightPhrase";
 import { Button } from "@/components/ui/Button";
 import { about, EVENT } from "@/lib/event";
@@ -60,8 +61,8 @@ export function AboutEvent() {
             echoing the hero's own headline register (EVENT.theme). */}
         <RevealOnScroll>
           <h2 className={cn("text-display-l", styles.title)}>
-            <span className={cn("block", styles.eyebrowLine)}>The</span>
-            <span className={cn("block", styles.titleLine)}>Unfinished</span>
+            <InViewGlitchText text="The" className={cn("block", styles.eyebrowLine)} duration={500} />
+            <InViewGlitchText text="Unfinished" className={cn("block", styles.titleLine)} delay={100} duration={800} />
           </h2>
         </RevealOnScroll>
 

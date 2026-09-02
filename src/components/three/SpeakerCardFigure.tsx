@@ -5,7 +5,7 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 const RED = "#E62B1E";
-const MODEL_SRC = "/models/speaker-figure.glb";
+const MODEL_SRC = "https://bxalqpxfcsrzpdwlgzhq.supabase.co/storage/v1/object/public/TEDX/speaker-figure.glb";
 
 /**
  * One card's mystery figure — deliberately lit from behind/the side only

@@ -69,9 +69,6 @@ export function SpeakerCardGrid({ onReveal, canRender3D }: SpeakerCardGridProps)
 
   return (
     <div ref={containerRef} className="relative z-10 w-full overflow-hidden">
-      {/* Edge fade — cards blur out toward the sides */}
-      <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-r from-[var(--color-black)] via-transparent to-[var(--color-black)]" />
-
       <motion.div
         role="list"
         aria-label="Speaker lineup — infinitely scrolling nine mystery slots"
@@ -93,7 +90,7 @@ export function SpeakerCardGrid({ onReveal, canRender3D }: SpeakerCardGridProps)
             <div
               key={`${slot.id}-${index}`}
               ref={(el) => { cardRefs.current[index] = el; }}
-              className="w-64 flex-none transition-all duration-500 lg:w-80"
+              className="w-64 flex-none transition-[filter,opacity,transform] duration-500 lg:w-80"
               role="listitem"
               style={{
                 filter: isFocused ? "blur(0px)" : "blur(4px)",

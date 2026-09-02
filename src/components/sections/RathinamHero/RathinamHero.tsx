@@ -11,6 +11,7 @@ import {
 } from "framer-motion";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { AmbientParticles } from "@/components/motion/AmbientParticles";
+import { GlitchText } from "@/components/motion/GlitchText";
 import { Logo } from "@/components/layout/Logo";
 import { CountdownTimer } from "@/components/sections/CountdownTimer";
 import { cn } from "@/lib/utils";
@@ -198,7 +199,7 @@ export function RathinamHero() {
                   variants={shouldReduceMotion ? undefined : line}
                   className="text-display-xl text-white"
                 >
-                  {text}
+                  <GlitchText text={text} delay={1850} duration={850} />
                 </motion.h1>
               ))}
             </motion.div>

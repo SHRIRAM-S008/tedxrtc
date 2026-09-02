@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
 
 // Monochrome glyph pool — the scramble reads as "digital/decoding", never as
 // off-palette RGB noise (DESIGN.md §2). Characters only; color stays in the token system.
@@ -25,6 +25,17 @@ interface GlitchTextProps {
  * scramble is aria-hidden. Under reduced motion it renders final text instantly
  * (ANIMATIONS.md §6). Length is preserved every frame, so there is no layout shift.
  */
+export function InViewGlitchText({ text, className, delay = 0, duration = 800 }: Omit<GlitchTextProps, "start">) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.6 });
+
+  return (
+    <span ref={ref} className={className}>
+      <GlitchText text={text} delay={delay} duration={duration} start={isInView} />
+    </span>
+  );
+}
+
 export function GlitchText({ text, className, delay = 0, duration = 800, start = true }: GlitchTextProps) {
   const shouldReduceMotion = useReducedMotion();
   const [display, setDisplay] = useState(text);

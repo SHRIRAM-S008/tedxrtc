@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { InViewGlitchText } from "@/components/motion/GlitchText";
 
 interface LegalPageProps {
   eyebrow: string;
@@ -21,7 +22,9 @@ export function LegalPage({ eyebrow, title, updated, children }: LegalPageProps)
       <div className="container mx-auto px-6 lg:px-16 relative">
         <div className="flex max-w-3xl flex-col gap-4 pl-8 lg:pl-24">
           <p className="text-eyebrow text-[var(--color-red)]">{eyebrow}</p>
-          <h1 className="text-display-l text-white">{title}</h1>
+          <h1 className="text-display-l text-white">
+            <InViewGlitchText text={title} />
+          </h1>
           <p className="text-small text-[var(--color-gray-500)]">Last updated {updated}</p>
         </div>
         <div className="mt-16 flex max-w-3xl flex-col gap-12 pl-8 lg:pl-24">{children}</div>
