@@ -108,7 +108,7 @@ export function RathinamHero() {
     >
       <motion.div style={{ y: bgY, opacity: bgOpacity }} className={styles.bgLayer}>
         <ImagePlaceholder
-          src="/images/hero/rathinam-hero-bg.jpg"
+          src="/images/hero/rathinam-hero-bg.png"
           alt=""
           caption="Campus footage"
           aspectRatio="auto"

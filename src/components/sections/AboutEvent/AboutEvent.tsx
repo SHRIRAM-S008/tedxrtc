@@ -61,8 +61,8 @@ export function AboutEvent() {
             echoing the hero's own headline register (EVENT.theme). */}
         <RevealOnScroll>
           <h2 className={cn("text-display-l", styles.title)}>
-            <InViewGlitchText text="The" className={cn("block", styles.eyebrowLine)} duration={250} />
-            <InViewGlitchText text="Unfinished" className={cn("block", styles.titleLine)} delay={50} duration={400} />
+            <InViewGlitchText text="What is" className={cn("block", styles.eyebrowLine)} duration={250} />
+            <InViewGlitchText text="TEDx" className={cn("block", styles.titleLine)} delay={50} duration={400} />
           </h2>
         </RevealOnScroll>
 

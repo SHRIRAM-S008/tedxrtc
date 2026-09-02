@@ -13,7 +13,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-heading);
-  font-size: clamp(8rem, 28vw, 26rem);
+  font-size: clamp(5rem, 20vw, 18rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   color: rgba(120, 80, 50, 0.12);

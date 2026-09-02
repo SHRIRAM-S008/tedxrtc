@@ -11,8 +11,8 @@
   .section {
     /* Tailwind's md:py-28 with no --spacing-28 token in the theme falls back
        to the framework default scale (28 * 0.25rem). */
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
   }
 }
 

@@ -7,10 +7,20 @@
   justify-content: center;
   gap: var(--spacing-16);
   overflow: hidden;
-  background-color: var(--color-black);
+  background:
+    linear-gradient(to bottom, rgba(10,10,10,0.7), rgba(10,10,10,0.85)),
+    url("/images/hero/finale-bg.png") center / cover no-repeat;
   padding-inline: var(--spacing-6);
   padding-block: var(--spacing-20);
   text-align: center;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(10,10,10,0.4) 100%);
+  pointer-events: none;
 }
 
 @media (min-width: 1024px) {
@@ -21,12 +31,15 @@
 }
 
 .heading {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-heading);
   color: var(--color-white);
 }
 
 .logoWrap {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
