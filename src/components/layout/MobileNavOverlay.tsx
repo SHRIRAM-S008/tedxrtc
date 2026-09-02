@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "./Logo";
+import { venue } from "@/lib/data/venue";
 
 interface MobileNavOverlayProps {
   isOpen: boolean;
@@ -11,8 +12,10 @@ interface MobileNavOverlayProps {
 }
 
 const navLinks = [
-  { name: "Speakers", href: "#speakers" },
-  { name: "Venue", href: "#venue" },
+  { name: "About", href: "#about", external: false },
+  { name: "Speakers", href: "#speakers", external: false },
+  { name: "Team", href: "#team", external: false },
+  { name: "Venue", href: venue.mapsUrl, external: true },
 ];
 
 export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
@@ -22,13 +25,20 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
     if (isOpen) {
       document.body.style.overflow = "hidden";
       closeBtnRef.current?.focus();
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === "Escape") onClose();
+      };
+      document.addEventListener("keydown", handleEscape);
+      return () => {
+        document.removeEventListener("keydown", handleEscape);
+      };
     } else {
       document.body.style.overflow = "";
     }
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   return (
     <AnimatePresence>
@@ -67,14 +77,30 @@ export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 24 }}
                 transition={{ duration: 0.5, delay: 0.1 * i, ease: [0.16, 1, 0.3, 1] }}
+                className="flex items-baseline gap-4"
               >
-                <Link
-                  href={link.href}
-                  onClick={onClose}
-                  className="text-display-l block hover:text-[var(--color-red)] transition-colors focus-visible w-fit"
-                >
-                  {link.name}
-                </Link>
+                <span className="text-eyebrow text-[var(--color-gray-500)]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {link.external ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={onClose}
+                    className="text-display-l block hover:text-[var(--color-red)] transition-colors focus-visible w-fit"
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link
+                    href={link.href}
+                    onClick={onClose}
+                    className="text-display-l block hover:text-[var(--color-red)] transition-colors focus-visible w-fit"
+                  >
+                    {link.name}
+                  </Link>
+                )}
               </motion.div>
             ))}
           </nav>

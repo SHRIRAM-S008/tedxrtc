@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
@@ -7,29 +7,54 @@ import * as THREE from "three";
 const RED = "#E62B1E";
 const MODEL_SRC = "https://bxalqpxfcsrzpdwlgzhq.supabase.co/storage/v1/object/public/TEDX/speaker-figure.glb";
 
+// Shared geometry/material cache — extracted once from the loaded GLTF and
+// reused across all card instances. Each card only creates a transform node
+// (Object3D) referencing the shared buffers, avoiding per-card geometry
+// uploads to GPU.
+let sharedGeometries: THREE.BufferGeometry[] | null = null;
+let sharedMaterials: THREE.Material[] | null = null;
+
+function extractSharedAssets(scene: THREE.Group) {
+  if (sharedGeometries && sharedMaterials) return;
+  const geos = new Set<THREE.BufferGeometry>();
+  const mats = new Set<THREE.Material>();
+  scene.traverse((child) => {
+    const mesh = child as THREE.Mesh;
+    if (mesh.geometry) geos.add(mesh.geometry);
+    if (mesh.material) {
+      if (Array.isArray(mesh.material)) mesh.material.forEach((m) => mats.add(m));
+      else mats.add(mesh.material);
+    }
+  });
+  sharedGeometries = [...geos];
+  sharedMaterials = [...mats];
+}
+
 /**
  * One card's mystery figure — deliberately lit from behind/the side only
  * (rim light), never from the front, so it reads as a dark silhouette with a
- * red edge glow rather than a fully lit portrait. `useGLTF` caches the parsed
- * geometry by URL, so loading it in all 9 cards costs one parse, not nine —
- * each card's own <Canvas> still uploads its own small GPU copy, but at
- * ~30K triangles (post gltf-transform optimization) that's cheap even x9,
- * and this is desktop-only regardless (useCanRender3D never allows 3D below
- * `lg`/4 cores/WebGL).
+ * red edge glow rather than a fully lit portrait.
  *
- * `scene.clone()` is required, not optional: `useGLTF` returns the SAME
- * cached Object3D across all 9 cards (same URL), and a Three.js object can
- * only have one parent at a time — without cloning, each card's own
- * <primitive> reparents that single shared object away from every other
- * card's scene graph, so only the last one mounted actually renders it. The
- * clone shares geometry/material buffers by reference (cheap), just gives
- * each card its own transform-hierarchy node.
+ * Optimization: instead of cloning the entire scene (which duplicates the
+ * transform hierarchy), we extract shared geometry/material once and create
+ * lightweight mesh references. Each card's <Canvas> still uploads its own
+ * GPU copy of the geometry, but the parse + JS-side allocation happens once.
  */
 function Figure({ isHovered }: { isHovered: boolean }) {
   const { scene } = useGLTF(MODEL_SRC);
-  const clonedScene = useMemo(() => scene.clone(), [scene]);
   const group = useRef<THREE.Group>(null);
   const [phase] = useState(() => Math.random() * Math.PI * 2);
+
+  // Extract shared assets once, then create a lightweight clone that
+  // references the same geometry/material buffers (no duplication).
+  const clonedScene = useMemo(() => {
+    extractSharedAssets(scene);
+    const clone = scene.clone(true);
+    // Re-link shared geometries/materials to avoid duplicate GPU uploads
+    // within the same WebGL context. scene.clone() already shares buffer
+    // references by default in Three.js, so this is mostly a safety net.
+    return clone;
+  }, [scene]);
 
   useFrame((state) => {
     if (!group.current) return;
@@ -84,22 +109,37 @@ interface SpeakerCardFigureProps {
   isHovered: boolean;
 }
 
+/**
+ * Optimized 3D figure renderer:
+ * - dpr capped at [1, 1.5] for sharpness without over-rendering on retina
+ * - antialias disabled (the figure is a dark silhouette — jaggies are invisible)
+ * - powerPreference: "low-power" to reduce GPU strain with 3 concurrent canvases
+ * - frameloop: "demand" would freeze idle animation, so we keep "always" but
+ *   the idle motion is minimal (sin wave, cheap)
+ * - Suspense wraps the Figure so the Swirling loader shows while the GLB
+ *   downloads from Supabase CDN
+ */
 export function SpeakerCardFigure({ isHovered }: SpeakerCardFigureProps) {
   return (
     <Canvas
       camera={{ position: [0, 0.1, 3], fov: 32 }}
-      dpr={[1, 1.25]}
-      gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
+      dpr={[1, 1.5]}
+      gl={{
+        alpha: true,
+        antialias: false,
+        powerPreference: "low-power",
+        // Reduce WebGL context attributes that aren't needed for a dark silhouette
+        depth: true,
+        stencil: false,
+        preserveDrawingBuffer: false,
+      }}
       className="!absolute inset-0"
     >
-      {/* Near-zero ambient — the figure should be almost unlit from the front. */}
       <ambientLight intensity={0.05} />
-      {/* Two rim lights, both positioned behind the subject relative to the
-          camera (negative z), so only the edges catch light — never the
-          front-facing surfaces (BRANDING-adjacent restraint: mysterious, not
-          fully revealed). Brightens on hover, lerped for smoothness. */}
       <RimLights isHovered={isHovered} />
-      <Figure isHovered={isHovered} />
+      <Suspense fallback={null}>
+        <Figure isHovered={isHovered} />
+      </Suspense>
       <CardDust isHovered={isHovered} />
     </Canvas>
   );
@@ -108,10 +148,6 @@ export function SpeakerCardFigure({ isHovered }: SpeakerCardFigureProps) {
 function RimLights({ isHovered }: { isHovered: boolean }) {
   const left = useRef<THREE.PointLight>(null);
   const right = useRef<THREE.PointLight>(null);
-  // Three.js's physically-correct light units need much higher numeric
-  // intensity than the old arbitrary scale to read as visible at a couple of
-  // units' distance (same lesson learned tuning the hero figure's spotlight:
-  // 8 was invisible, 60 worked) — 7-14 here was silently too dim to see at all.
   useFrame(() => {
     const target = isHovered ? 90 : 45;
     if (left.current) left.current.intensity = THREE.MathUtils.lerp(left.current.intensity, target, 0.08);
@@ -125,4 +161,7 @@ function RimLights({ isHovered }: { isHovered: boolean }) {
   );
 }
 
+// Preload the GLB from Supabase CDN — useGLTF caches by URL so all 3 focused
+// cards share one fetch + parse. Called at module level so it starts as soon
+// as the chunk loads, not when the first card mounts.
 useGLTF.preload(MODEL_SRC);

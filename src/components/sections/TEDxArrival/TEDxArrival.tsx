@@ -270,7 +270,7 @@ export function TEDxArrival() {
             <GlitchText
               text={HEADLINE}
               delay={shouldReduceMotion ? 0 : T.headline * 1000}
-              duration={1100}
+              duration={600}
               start={armed}
             />
           </motion.h1>
@@ -316,35 +316,6 @@ export function TEDxArrival() {
         </p>
       </motion.div>
 
-      {/* Scroll indicator — deliberately not a bouncing chevron/mouse icon
-          (UI_GUIDELINES.md's Don't list calls that out as a template cliché).
-          A thin vertical line with a red segment traveling down it: the same
-          line-as-signature-thread language as the rest of the hero, not a new
-          motif. Static (no travel) under reduced motion, per ANIMATIONS.md §6.
-          Desktop-only — same posture as the other desktop-tier flourishes on
-          this site (FloatingGallery's side photos, the Speakers hologram): on
-          mobile the CTA-dense hero already implies there's more below, and this
-          purely-decorative hint would otherwise sit right on top of the CTAs. */}
-      <motion.div
-        aria-hidden="true"
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        animate={armed ? { opacity: 1 } : undefined}
-        transition={{ duration: 1, delay: shouldReduceMotion ? 0 : T.scrollHint }}
-        className={styles.scrollIndicator}
-      >
-        <span className={cn("text-eyebrow", styles.scrollLabel)}>Scroll</span>
-        <div className={styles.scrollTrack}>
-          {shouldReduceMotion ? (
-            <div className={styles.scrollProgress} />
-          ) : (
-            <motion.div
-              className={styles.scrollProgress}
-              animate={{ y: ["-100%", "200%"] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: T.scrollHint }}
-            />
-          )}
-        </div>
-      </motion.div>
     </section>
   );
 }

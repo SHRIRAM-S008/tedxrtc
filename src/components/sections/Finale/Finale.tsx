@@ -23,11 +23,11 @@ export function Finale() {
     <section className={styles.section}>
       <RevealOnScroll>
         <h2 className={cn("text-display-l", styles.heading)}>
-          <InViewGlitchText text="The next great idea" duration={750} />
+          <InViewGlitchText text="The next great idea" duration={400} />
           <br />
-          <InViewGlitchText text="might begin" delay={100} duration={600} />
+          <InViewGlitchText text="might begin" delay={50} duration={300} />
           <br />
-          <InViewGlitchText text="at Rathinam." delay={180} duration={600} />
+          <InViewGlitchText text="at Rathinam." delay={100} duration={300} />
         </h2>
       </RevealOnScroll>
 

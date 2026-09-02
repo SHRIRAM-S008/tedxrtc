@@ -25,7 +25,7 @@ interface GlitchTextProps {
  * scramble is aria-hidden. Under reduced motion it renders final text instantly
  * (ANIMATIONS.md §6). Length is preserved every frame, so there is no layout shift.
  */
-export function InViewGlitchText({ text, className, delay = 0, duration = 800 }: Omit<GlitchTextProps, "start">) {
+export function InViewGlitchText({ text, className, delay = 0, duration = 400 }: Omit<GlitchTextProps, "start">) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.6 });
 
@@ -36,7 +36,7 @@ export function InViewGlitchText({ text, className, delay = 0, duration = 800 }:
   );
 }
 
-export function GlitchText({ text, className, delay = 0, duration = 800, start = true }: GlitchTextProps) {
+export function GlitchText({ text, className, delay = 0, duration = 400, start = true }: GlitchTextProps) {
   const shouldReduceMotion = useReducedMotion();
   const [display, setDisplay] = useState(text);
   const rafRef = useRef<number>(0);

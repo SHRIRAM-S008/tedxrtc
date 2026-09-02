@@ -33,8 +33,8 @@ export const team: TeamMember[] = [
 
   // Impact Team
   { id: "igniter", category: "Impact Team", role: "Igniter", name: "Ms. Benita", announced: true },
-  { id: "ambassador", category: "Impact Team", role: "Ambassador", name: "Shriram S", announced: true },
-  { id: "promoter", category: "Impact Team", role: "Promoter", name: "Swaathy Sahaana", announced: true },
+  { id: "ambassador", category: "Impact Team", role: "Ambassador", name: "Mr. Shriram S", announced: true },
+  { id: "promoter", category: "Impact Team", role: "Promoter", name: "Ms. Swaathy Sahaana", announced: true },
   { id: "moderator", category: "Impact Team", role: "Moderator", name: "Mr. Kauif", announced: true },
   { id: "creator", category: "Impact Team", role: "Creator", name: "Mr. Shamanth", announced: true },
   { id: "transformer", category: "Impact Team", role: "Transformer", name: "Mr. Lakshmanan", announced: true },

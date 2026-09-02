@@ -8,6 +8,7 @@ import styles from "./Footer.module.css";
 export function Footer() {
   return (
     <footer className={styles.footer}>
+      <span className={styles.watermark} aria-hidden="true">RATHINAM</span>
       <div className={styles.container}>
         {/* Brand */}
         <div className={styles.brand}>

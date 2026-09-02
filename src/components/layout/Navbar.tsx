@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { MobileNavOverlay } from "./MobileNavOverlay";
 import { Logo } from "./Logo";
+import { venue } from "@/lib/data/venue";
 
 export function Navbar() {
   const shouldReduceMotion = useReducedMotion();
@@ -49,13 +50,19 @@ export function Navbar() {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-8">
             <div className="flex items-center gap-6 text-eyebrow">
-              {["Speakers", "Venue"].map((item) => (
+              {[
+                { name: "About", href: "#about" },
+                { name: "Speakers", href: "#speakers" },
+                { name: "Team", href: "#team" },
+                { name: "Venue", href: venue.mapsUrl, external: true },
+              ].map((item) => (
                 <Link
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.name}
+                  href={item.href}
+                  {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="relative group focus-visible"
                 >
-                  <span>{item}</span>
+                  <span>{item.name}</span>
                   <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-[var(--color-red)] scale-x-0 origin-left transition-transform duration-micro group-hover:scale-x-100" />
                 </Link>
               ))}

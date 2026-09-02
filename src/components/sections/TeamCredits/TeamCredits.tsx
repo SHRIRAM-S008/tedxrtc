@@ -137,8 +137,8 @@ export function TeamCredits() {
             in the same editorial register as the hero's "THE UNFINISHED". */}
         <RevealOnScroll>
           <h2 className={cn("text-display-l", styles.title)}>
-            <InViewGlitchText text="Meet Our" className={styles.titleRed} duration={700} />
-            <InViewGlitchText text="Team" className={styles.titleWhite} delay={100} duration={500} />
+            <InViewGlitchText text="Meet Our" className={styles.titleRed} duration={350} />
+            <InViewGlitchText text="Team" className={styles.titleWhite} delay={50} duration={250} />
           </h2>
         </RevealOnScroll>
 

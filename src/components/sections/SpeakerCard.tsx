@@ -4,6 +4,7 @@ import { Suspense, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import type { SpeakerSlot } from "@/lib/data/speaker-slots";
 import { useInView } from "@/lib/hooks/useInView";
+import { Swirling } from "@/components/ui/swirling";
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
 
@@ -121,23 +122,13 @@ export function SpeakerCard({ slot, index, onReveal, canRender3D, isFocused = fa
 
           <div className="relative w-full flex-1">
             {show3D ? (
-              <Suspense fallback={null}>
+              <Suspense
+                fallback={<SpeakerCardLoader />}
+              >
                 <SpeakerCardFigure isHovered={isHovered && !shouldReduceMotion} />
               </Suspense>
             ) : (
-              // CSS silhouette fallback — non-focused cards, mobile, low-end,
-              // no WebGL, reduced motion (useCanRender3D). Already dark/solid,
-              // so "silhouetted" holds true here too.
-              <div className="flex h-full items-center justify-center">
-                <svg viewBox="0 0 64 80" className="h-16 w-16" aria-hidden="true">
-                  <path
-                    d="M32 6c7 0 12 6 12 13s-5 12-12 12-12-5-12-12S25 6 32 6Z M12 78c1-16 9-28 20-28s19 12 20 28Z"
-                    fill="var(--color-black)"
-                    stroke="rgba(230,43,30,0.4)"
-                    strokeWidth="0.75"
-                  />
-                </svg>
-              </div>
+              <SpeakerCardLoader />
             )}
           </div>
 
@@ -145,5 +136,21 @@ export function SpeakerCard({ slot, index, onReveal, canRender3D, isFocused = fa
         </motion.button>
       </motion.div>
     </motion.div>
+  );
+}
+
+/**
+ * Loader state for speaker cards — a swirling SVG ring with a red rim glow.
+ * Used both as the Suspense fallback while the 3D figure loads and as the
+ * permanent state for non-focused/mobile cards that never mount a WebGL canvas.
+ */
+function SpeakerCardLoader() {
+  return (
+    <div className="flex h-full items-center justify-center" aria-hidden="true">
+      <Swirling
+        className="size-20 text-[var(--color-red)]"
+        style={{ filter: "drop-shadow(0 0 12px rgba(230,43,30,0.3))" }}
+      />
+    </div>
   );
 }
