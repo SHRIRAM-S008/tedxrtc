@@ -11,6 +11,8 @@ interface ImagePlaceholderProps {
   sizes?: string;
   className?: string;
   priority?: boolean;
+  /** CSS object-position to reframe the image within its crop. */
+  objectPosition?: string;
 }
 
 /**
@@ -27,6 +29,7 @@ export function ImagePlaceholder({
   sizes = "(max-width: 768px) 90vw, 45vw",
   className,
   priority,
+  objectPosition,
 }: ImagePlaceholderProps) {
   if (src) {
     return (
@@ -41,6 +44,7 @@ export function ImagePlaceholder({
           sizes={sizes}
           priority={priority}
           className="object-cover"
+          style={objectPosition ? { objectPosition } : undefined}
         />
       </div>
     );

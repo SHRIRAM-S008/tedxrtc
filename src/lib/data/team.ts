@@ -23,13 +23,14 @@ export const team: TeamMember[] = [
   { id: "logistics-coordinator", category: "Operations", role: "Logistics Coordinator", name: "Mr. Tamilarasan", announced: true, imageUrl: "/images/team/tamilarasan.png" },
   { id: "finance-coordinator", category: "Operations", role: "Finance Coordinator", name: "Mr. Kameshwaran", announced: true, imageUrl: "/images/team/kameshwaran.jpeg" },
   { id: "partnership-enabler", category: "Operations", role: "Partnership Enabler", name: "Mr. Logesh M", announced: true, imageUrl: "/images/team/logesh.jpeg" },
-  { id: "hospitality-coordinator", category: "Operations", role: "Hospitality Coordinator", name: "Ms. Anisha Banu", announced: true },
+  { id: "hospitality-coordinator", category: "Operations", role: "Hospitality Coordinator", name: "Ms. Anisha Banu", announced: true, imageUrl: "/images/team/anisha-banu.jpeg" },
   { id: "designer", category: "Operations", role: "Designer", name: "Mr. Sakthipriyan", announced: true, imageUrl: "/images/team/sakthipriyan.png" },
-  { id: "web-developer", category: "Operations", role: "Web Developer", name: "Ms. Meghala", announced: true },
+  { id: "web-developer", category: "Operations", role: "Web Developer", name: "Ms. Meghala", announced: true, imageUrl: "/images/team/meghala.png" },
   { id: "venue-coordinator", category: "Operations", role: "Venue Coordinator", name: "Mr. Suhail", announced: true, imageUrl: "/images/team/suhail.jpeg" },
   { id: "outreach-coordinator", category: "Operations", role: "Outreach Coordinator", name: "Ms. Aadhila", announced: true, imageUrl: "/images/team/aadhila.png" },
-  { id: "technical-lead", category: "Operations", role: "Technical Lead", name: "Mr. Kumar Shanu P K", announced: true },
+  { id: "technical-lead", category: "Operations", role: "Technical Lead", name: "Mr. Kumar Shanu P K", announced: true, imageUrl: "/images/team/kumar-shanu.png", objectPosition: "top" },
   { id: "participants-coordinator", category: "Operations", role: "Participants Coordinator", name: "Mr. Buvan Kirthik", announced: true, imageUrl: "/images/team/buvan-kirthik-rajan.png" },
+  { id: "speaker-curator", category: "Operations", role: "Speaker Curator", name: "Ms. Lakshmi", announced: true, imageUrl: "/images/team/lakshmi.jpeg" },
 
   // Impact Team
   { id: "igniter", category: "Impact Team", role: "Igniter", name: "Ms. Benita", announced: true },

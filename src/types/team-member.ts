@@ -8,6 +8,8 @@ export interface TeamMember {
   announced: boolean;
   name?: string;
   imageUrl?: string;
+  /** CSS object-position value to reframe a portrait within its crop (e.g. "top"). */
+  objectPosition?: string;
   category?: TeamCategory;
   /** Short first-person line revealed on hover (TeamCredits' Leadership/Operations rows). */
   quote?: string;

@@ -19,6 +19,7 @@ function PortraitRow({ member, index }: { member: TeamMember; index: number }) {
             alt={member.portraitAlt ?? `Portrait of ${displayName}, ${member.role}`}
             caption={displayName}
             aspectRatio="3 / 4"
+            objectPosition={member.objectPosition}
           />
         </div>
         <div className={styles.portraitContent}>
@@ -56,6 +57,7 @@ function OperationsGrid({ members }: { members: TeamMember[] }) {
                   alt={member.portraitAlt ?? `Portrait of ${displayName}, ${member.role}`}
                   caption={displayName}
                   aspectRatio="1 / 1"
+                  objectPosition={member.objectPosition ?? "top"}
                 />
                 <div>
                   <p className={cn("text-eyebrow", styles.opsRole)}>{member.role}</p>
