@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { InViewGlitchText } from "@/components/motion/GlitchText";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
@@ -101,19 +102,16 @@ function ImpactList({ members }: { members: TeamMember[] }) {
       <RevealOnScroll>
         <p className={cn("text-eyebrow", styles.categoryLabel)}>Impact Team</p>
       </RevealOnScroll>
-      <div className={styles.impactList}>
-        {members.map((member, i) => {
-          const displayName = member.announced && member.name ? member.name : "To be announced";
-          return (
-            <RevealOnScroll key={member.id} delay={0.03 * i}>
-              <div className={styles.impactItem}>
-                <span className={cn("text-eyebrow", styles.impactRole)}>{member.role}</span>
-                <span className={cn("text-body", styles.impactName)}>{displayName}</span>
-              </div>
-            </RevealOnScroll>
-          );
-        })}
-      </div>
+      <RevealOnScroll>
+        <Image
+          src="/images/team/impact-team.png"
+          alt="Impact Team"
+          width={2400}
+          height={900}
+          className={styles.impactLabel}
+          priority={false}
+        />
+      </RevealOnScroll>
     </div>
   );
 }
