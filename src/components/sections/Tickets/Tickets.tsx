@@ -1,6 +1,5 @@
 import { InViewGlitchText } from "@/components/motion/GlitchText";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
-import { RegisterForm } from "@/components/sections/RegisterForm";
 import { EVENT } from "@/lib/event";
 import { cn } from "@/lib/utils";
 import styles from "./Tickets.module.css";
@@ -10,9 +9,18 @@ import styles from "./Tickets.module.css";
  * CTA ("Get Tickets" in the nav, "Register Now" in AboutEvent/TEDxArrival,
  * "Reserve Your Seat" in Finale) points at `#tickets`, which this section
  * owns. Left column carries the pitch + secondary contact info, right column
- * is the actual form (`RegisterForm`, already wired to the `registerAction`
- * server action).
+ * lists the reservation phone, email, and social links.
+ *
+ * NOTE: the inline registration form was removed so the site can be built as
+ * a static export (server actions require a Node runtime).
  */
+const PHONE = "8754026622";
+const EMAIL = "tedxrtc@rathinam.in";
+const SOCIALS = [
+  { label: "Instagram", href: "https://www.instagram.com/tedxrtc?utm_source=qr" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/tedxrtc/" },
+];
+
 export function Tickets() {
   return (
     <section id="tickets" className={styles.section}>
@@ -74,8 +82,44 @@ export function Tickets() {
           </div>
 
           <RevealOnScroll delay={0.15}>
-            <div className={styles.formColumn}>
-              <RegisterForm />
+            <div className={styles.contactColumn}>
+              <p className={cn("text-eyebrow", styles.contactLabel)}>Reserve Your Seat</p>
+              <p className={cn("text-body", styles.contactIntro)}>
+                Reach out to reserve your spot for TEDxRTC.
+              </p>
+              <ul className={styles.contactList}>
+                <li className={styles.contactItem}>
+                  <span className={cn("text-body", styles.contactName)}>Phone</span>
+                  <a
+                    href={`tel:${PHONE}`}
+                    className={cn("text-body-l", styles.contactPhone)}
+                  >
+                    {PHONE}
+                  </a>
+                </li>
+                <li className={styles.contactItem}>
+                  <span className={cn("text-body", styles.contactName)}>Email</span>
+                  <a
+                    href={`mailto:${EMAIL}`}
+                    className={cn("text-body-l", styles.contactPhone)}
+                  >
+                    {EMAIL}
+                  </a>
+                </li>
+              </ul>
+              <div className={styles.socialRow}>
+                {SOCIALS.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn("text-small", styles.socialLink)}
+                  >
+                    {social.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </RevealOnScroll>
         </div>
